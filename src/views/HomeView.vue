@@ -11,8 +11,19 @@ import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      envapi: '',
+      envpath: '',
+    };
+  },
   components: {
     HelloWorld,
+  },
+  created() {
+    console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
+    this.envapi = process.env.VUE_APP_API;
+    this.envpath = process.env.VUE_APP_PATH;
   },
 };
 </script>
