@@ -9,27 +9,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"
+      :class="{'hidden-class': $route.fullPath.split('/')[1]  !== 'dashboard'}">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <router-link :class="{ 'active': $route.fullPath  === '/dashboard/products'}"
+          class="nav-link" :to="{path: '/dashboard/products'}">產品</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          <router-link :class="{ 'active': $route.fullPath  === '/dashboard/orders'}"
+          class="nav-link" :to="{path: '/dashboard/orders'}">訂單</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Disabled</a>
+          <router-link  :class="{ 'active': $route.fullPath  === '/dashboard/coupons'}"
+          class="nav-link" :to="{path: '/dashboard/coupons'}">優惠碼</router-link>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"
+      :class="{'hidden-class': $route.fullPath.split('/')[1]  !== 'user'}">
+        <li class="nav-item">
+          <router-link :class="{ 'active': $route.fullPath  === '/user/cart'}"
+          class="nav-link" :to="{path: '/user/cart'}">產品</router-link>
         </li>
       </ul>
       <form class="d-flex">
@@ -44,10 +44,20 @@
   .navbar-nav li {
     border-left: 1px solid white;
   }
+  .active {
+    font-weight: bold;
+  }
+  .hidden-class {
+  display: none;
+  }
 </style>
 
 <script>
 export default {
+  watch: {
+    $route() {
+    },
+  },
   methods: {
     logout() {
       const api = `${process.env.VUE_APP_API}logout`;

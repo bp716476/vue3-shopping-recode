@@ -29,7 +29,7 @@
                 <input type="file" id="customFile" class="form-control"
                 ref="fileInput" @change="uploadFile">
               </div>
-              <img class="img-fluid" alt="">
+              <img class="img-fluid" alt="" :src="tempproduct.imageUrl">
               <!-- 延伸技巧，多圖 -->
               <div class="mt-5">
                 <div class="mb-3 input-group" >
@@ -138,6 +138,7 @@ export default ({
       modal: {},
       tempproduct: {},
       isButtonDisabled: false,
+      fileInput: null,
     };
   },
   methods: {
@@ -156,6 +157,7 @@ export default ({
         if (res.data.success) {
           // console.log(res.data);
           this.tempproduct.imageUrl = res.data.imageUrl;
+          this.$refs.fileInput.value = '';
         }
       });
     },

@@ -60,6 +60,8 @@ export default ({
             const { token, expired } = res.data;
             document.cookie = `hexToken=${token}; expired=${new Date(expired)}`;
             this.$router.push('/dashboard/products');
+          } else {
+            console.log(res.data);
           }
         });
       // const path = `${process.env.VUE_APP_PATH}`;
